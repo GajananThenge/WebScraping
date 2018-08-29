@@ -36,6 +36,8 @@ def usage():
 
 def get_tweet_text(tweet):
     tweet_text_box = tweet.find("p", {"class": "TweetTextSize TweetTextSize--normal js-tweet-text tweet-text"})
+    
+    
     images_in_tweet_tag = tweet_text_box.find_all("a", {"class": "twitter-timeline-link u-hidden"})
     tweet_text = tweet_text_box.text
     for image_in_tweet_tag in images_in_tweet_tag:
@@ -45,7 +47,8 @@ def get_tweet_text(tweet):
 
 def get_this_page_tweets(soup):
     tweets_list = list()
-    tweets = soup.find_all("li", {"div": "content"}) #Gives the description
+    tweets = soup.find_all("li", {"data-item-type": "tweet"}) #Gives the description
+    
     for tweet in tweets:
         tweet_data = None
         try:
@@ -65,6 +68,9 @@ def get_this_page_tweets(soup):
 def get_tweets_data(username, soup):
     tweets_list = list()
     tweets_list.extend(get_this_page_tweets(soup))
+    
+    
+    
  
 def start(username = None):
     username = 'aagelfand'#get_username()
@@ -90,4 +96,13 @@ def start(username = None):
  
     tweets = get_tweets_data(username, soup)
     return tweets
-start()
+
+def on_status(status):
+    try:
+        print("Retweeted ************* \n" + str(status.retweeted_status))
+        return 
+    except AttributeError:
+        print("there is no attribut with name retweeted_status")
+        
+        #Href
+        #http://thepythondjango.com/python-script-7-scraping-tweets-using-beautifulsoup/
