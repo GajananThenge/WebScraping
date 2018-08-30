@@ -89,6 +89,9 @@ def start(username = None):
         sys.exit(1)
  
     soup = BeautifulSoup(response.text, 'lxml')
+    #soup = BeautifulSoup(response.content, 'html5lib')
+    
+    #table = soup.find("li", {"data-item-type": "tweet"})
  
     if soup.find("div", {"class": "errorpage-topbar"}):
         print("\n\n Error: Invalid username.")
