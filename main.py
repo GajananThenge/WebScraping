@@ -4,7 +4,7 @@ Created on Wed Aug 29 21:36:34 2018
 
 @author: hp-pc
 """
-
+#https://www.geeksforgeeks.org/implementing-web-scraping-python-beautiful-soup/
 # script to scrape tweets by a twitter user.
 # Author - ThePythonDjango.Com
 # dependencies - BeautifulSoup, requests
